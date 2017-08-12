@@ -10,10 +10,11 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { AllHeroesComponent } from './all-heroes/all-heroes.component';
 
 import { HeroService } from './services/hero.service';
 import { InMemoryDataService } from './services/in-memory-data.service';
+import { MultiTermPipe } from './pipe/multi-term.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     HeroesComponent,
     HeroDetailComponent,
     DashboardComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    AllHeroesComponent,
+    MultiTermPipe,
   ],
   imports: [
     BrowserModule,
