@@ -1,15 +1,18 @@
 <h3>All Heroes</h3>
 <div>
-  <span>Search: </span>
-  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
-  {{filter}}
   <div>
-    <div class="grid grid-pad">
-      <a *ngFor="let hero of heroes | multiTermPipe:filterString" [routerLink]="['/detail', hero.id]" class="col-1-4">
-        <div class="module hero">
-          <h4>{{hero.name}}</h4>
-        </div>
-      </a>
-    </div>
+    <span>Search: </span>
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" /> {{filter}}
+  </div>
+  <div>  
+    <span>Match All Terms: </span>
+    <input type="checkbox" [checked]="matchAll" (change)="matchAll = !matchAll" />
+  </div>
+  <div class="grid grid-pad">
+    <a *ngFor="let hero of heroes | multiTermPipe:filterString:matchAll" [routerLink]="['/detail', hero.id]" class="col-1-4">
+      <div class="module hero">
+        <h4>{{hero.name}}</h4>
+      </div>
+    </a>
   </div>
 </div>

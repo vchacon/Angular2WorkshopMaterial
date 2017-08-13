@@ -11,16 +11,17 @@ import { MultiTermPipe } from './../pipe/multi-term.pipe';
 export class AllHeroesComponent implements OnInit {
   heroes: Hero[] = [];
   filterString: string;
-  
-    constructor(private heroService: HeroService) { }
-  
-    ngOnInit() {
-      this.heroService.getHeroes().then((heroes) => {
-        this.heroes = heroes;
-      });
-    }
-  
-    search(term: string): void {
-      this.filterString = term;
-    }
+  matchAll: boolean = true;
+
+  constructor(private heroService: HeroService) { }
+
+  ngOnInit() {
+    this.heroService.getHeroes().then((heroes) => {
+      this.heroes = heroes;
+    });
+  }
+
+  search(term: string): void {
+    this.filterString = term;
+  }
 }
