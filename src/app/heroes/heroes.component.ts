@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { Hero } from '../models/hero';
 import { HeroService } from '../services/hero.service';
@@ -13,8 +14,11 @@ import { HeroService } from '../services/hero.service';
 export class HeroesComponent implements OnInit {
   selectedHero: Hero;
   heroes: Hero[];
+  dialogRef: MdDialogRef<SelectedHeroDialog>;
 
-  constructor(private heroService: HeroService, private router: Router) {
+  constructor(private heroService: HeroService,
+    private router: Router,
+    private dialog: MdDialog) {
 
   }
 
@@ -28,7 +32,8 @@ export class HeroesComponent implements OnInit {
   }
 
   onSelect(hero: Hero): void {
-    this.selectedHero = hero;
+    this.dialogRef = this.dialog.open(SelectedHeroDialog);
+    this.dialogRef.componentInstance.selectedHero = hero;;
   }
 
   add(name: string): void {
@@ -53,6 +58,28 @@ export class HeroesComponent implements OnInit {
   }
 
   gotoDetail(): void {
+    this.router.navigate(['/detail', this.selectedHero.id]);
+  }
+}
+
+@Component({
+  selector: 'selected-hero-dialog',
+  template: `
+  <h2>{{ selectedHero.name | uppercase }}</h2>
+  <button md-raised-button color="primary" (click)="gotoDetail()">View details</button>
+  <button md-raised-button (click)="dialogRef.close()">Close</button>
+  `
+})
+export class SelectedHeroDialog {
+  selectedHero: any;
+
+  constructor(
+    public dialogRef: MdDialogRef<SelectedHeroDialog>,
+    private router: Router) {
+  }
+
+  gotoDetail(): void {
+    this.dialogRef.close();
     this.router.navigate(['/detail', this.selectedHero.id]);
   }
 }
