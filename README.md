@@ -11,9 +11,4 @@ Angular Tour of heroes sample for FRI Garaza hands-on workshop
 * Guide is available [here](https://github.com/jamzi/Angular2Workshop/blob/master/GETTING_STARTED.md)
 * Video tutorials are available [here](https://www.youtube.com/playlist?list=PLaux2QRFlrWym9tLsDKAkl2Eo24VDTcRZ&disable_polymer=true)
 
-# Run the final sample 
-* install [NodeJS](https://nodejs.org/en/)
-* npm install -g @angular/cli
-* git clone https://github.com/jamzi/Angular2Workshop.git
-* npm install 
-* ng serve
+
